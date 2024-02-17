@@ -1,7 +1,12 @@
 const myLibrary = [];
+const libContainer = document.body;
 
-function createLibrary() {
+function createLibrary(libContainer) {
     //create html div with class="library"
+    const lib = document.createElement("div");
+    lib.className = "library";
+    lib.textContent = "test";
+    libContainer.appendChild(lib);
 }
 
 function Book(title, author, pages, read) {
@@ -30,3 +35,7 @@ function showLibrary() {
     //create a Book card (html div element) with Book details listed
     //append Book card element to library (html div element)
 }
+
+const book1 = new Book("Book Title","Arthor Thor","172",true);
+
+createLibrary(libContainer);
