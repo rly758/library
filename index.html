@@ -11,14 +11,15 @@
     <a><button id="addBookBtn">Add Book</button></a>
     <dialog id="dialog">
         <div class="modal">
-            <form>
+            <form id="bookForm">
                 <p>Add New Book</p>
-                <input type="text" id="title" placeholder="Title">
-                <input type="text" id="author" placeholder="Author">
-                <input type="number" id="pages" placeholder="Pages" min="0" max="10000" step="1">
+                <input type="text" id="title" name="title" placeholder="Title" maxlength="100">
+                <input type="text" id="author" name="author" placeholder="Author" maxlength="100">
+                <input type="number" id="pages" name="pages" placeholder="Pages" min="1" max="10000" step="1">
                 <label for="read">Have you read it?</label>
-                <input type="checkbox" id="read">
-                <button id="submitBtn">Submit</button>
+                <input type="checkbox" id="read" name="read">
+                <a><button type="button" id="cancelBtn">Cancel</button></a>
+                <a><button id="submitBtn">Submit</button></a>
             </form>
         </div>
     </dialog>

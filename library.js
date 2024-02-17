@@ -3,10 +3,26 @@ const LIBRARY_PARENT = document.body;
 const addBookBtn = document.querySelector("#addBookBtn");
 const newBookDialog = document.querySelector("#dialog");
 const submitBtn = document.querySelector("#submitBtn");
+const cancelBtn = document.querySelector("#cancelBtn");
+const bookForm = document.querySelector("#bookForm");
+const formTitle = document.querySelector("#title");
+const formAuthor = document.querySelector("#author");
+const formPages = document.querySelector("#pages");
+const formRead = document.querySelector("#read");
 
 submitBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    newBookDialog.close(); //on submit return an object with all values
+    //add form input validation
+    const newBook = new Book(formTitle.value, formAuthor.value, formPages.value, formRead.checked);
+    bookForm.reset();
+    addBookToLibrary(newBook, myLibrary, cardContainer);
+    newBookDialog.close();
+});
+
+cancelBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    newBookDialog.close();
+    bookForm.reset();
 });
 
 function openDialog() {
@@ -21,11 +37,6 @@ function closeDialog(event) {
   
 addBookBtn.addEventListener('click', openDialog);
 document.addEventListener('click', closeDialog);
-
-//get book details from form submit button
-//create new book object
-//pass book details to addBookToLibrary()
-
 
 function createLibrary(location = LIBRARY_PARENT) {
     //create html div with class="library"
@@ -46,14 +57,7 @@ Book.prototype.getDetails = function() {
 };
 
 //on form submission add a new book to myLibrary, and display the new book card on page
-function addBookToLibrary(myLibrary, cardContainer) { //add book parameter to get book details
-    //get new book details from user input
-    const title = "test title";
-    const author = "test author";
-    const pages = "100";
-    const read = true;
-    //create new Book object to store details
-    const book = new Book(title,author,pages,read);
+function addBookToLibrary(book, myLibrary, cardContainer) { 
     //add Book object to myLibrary
     myLibrary.push(book);
     
@@ -89,7 +93,7 @@ function getBookCard(book) {
     return card;
 }
 
-
+//existing books in library
 const book1 = new Book("Book Title 1","Arthor Thor","172",true);
 const book2 = new Book("Book Title 2","Arthur Tor","131",false);
 
@@ -99,4 +103,3 @@ myLibrary.push(book2);
 createLibrary();
 const cardContainer = document.querySelector(".library");
 showLibrary(myLibrary, cardContainer);
-//addBookToLibrary(myLibrary, cardContainer);
