@@ -20,19 +20,26 @@ Book.prototype.getDetails = function() {
 };
 
 //on form submission add a new book to myLibrary, and display the new book card on page
-function addBookToLibrary() {
+function addBookToLibrary(myLibrary, cardContainer) {
     //get new book details from user input
+    const title = "test title";
+    const author = "test author";
+    const pages = "100";
+    const read = true;
     //create new Book object to store details
+    const book = new Book(title,author,pages,read);
     //add Book object to myLibrary
-    //create a Book card html element
+    myLibrary.push(book);
+    console.log(myLibrary);
+    
+    //create a Book card html element => getBookCard()
+    const card = getBookCard(book);
     //append Book card to library in html
+    cardContainer.appendChild(card);
 }
 
-//display existing library in myLibrary
+//display existing books in myLibrary as cards
 function showLibrary(myLibrary, cardContainer) {
-    //for each Book in myLibrary
-    //create a Book card (html div element) with Book details listed => getBookCard() returns div element
-    //append Book card element to library (html div element)
     for (book of myLibrary) {
         const card = getBookCard(book);
         cardContainer.appendChild(card);
@@ -57,6 +64,7 @@ function getBookCard(book) {
     return card;
 }
 
+
 const book1 = new Book("Book Title 1","Arthor Thor","172",true);
 const book2 = new Book("Book Title 2","Arthur Tor","131",false);
 
@@ -65,7 +73,5 @@ myLibrary.push(book2);
 
 createLibrary();
 const cardContainer = document.querySelector(".library");
-//const testCard = getBookCard(book1);
-//lib.appendChild(testCard);
-
 showLibrary(myLibrary, cardContainer);
+addBookToLibrary(myLibrary, cardContainer);
