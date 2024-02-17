@@ -1,5 +1,11 @@
 const myLibrary = [];
 const LIBRARY_PARENT = document.body;
+const addBookBtn = document.querySelector("#addBookBtn");
+
+addBookBtn.addEventListener("click", () => {
+    addBookToLibrary(myLibrary, cardContainer);
+});
+
 
 function createLibrary(location = LIBRARY_PARENT) {
     //create html div with class="library"
@@ -30,7 +36,6 @@ function addBookToLibrary(myLibrary, cardContainer) {
     const book = new Book(title,author,pages,read);
     //add Book object to myLibrary
     myLibrary.push(book);
-    console.log(myLibrary);
     
     //create a Book card html element => getBookCard()
     const card = getBookCard(book);
@@ -74,4 +79,4 @@ myLibrary.push(book2);
 createLibrary();
 const cardContainer = document.querySelector(".library");
 showLibrary(myLibrary, cardContainer);
-addBookToLibrary(myLibrary, cardContainer);
+//addBookToLibrary(myLibrary, cardContainer);
