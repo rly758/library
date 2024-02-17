@@ -75,6 +75,8 @@ function showLibrary(myLibrary, cardContainer) {
     }
 }
 
+//add read toggle
+//add remove book button
 function getBookCard(book) {
     const details = book.getDetails();
     const card = document.createElement("div");
