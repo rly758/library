@@ -1,10 +1,30 @@
 const myLibrary = [];
 const LIBRARY_PARENT = document.body;
 const addBookBtn = document.querySelector("#addBookBtn");
+const newBookDialog = document.querySelector("#dialog");
+const submitBtn = document.querySelector("#submitBtn");
 
-addBookBtn.addEventListener("click", () => {
-    addBookToLibrary(myLibrary, cardContainer);
+submitBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    newBookDialog.close(); //on submit return an object with all values
 });
+
+function openDialog() {
+    newBookDialog.showModal();
+}
+  
+function closeDialog(event) {
+    // If the target dialog is
+    if (!event.target.contains(newBookDialog)) return;
+    newBookDialog.close();
+}
+  
+addBookBtn.addEventListener('click', openDialog);
+document.addEventListener('click', closeDialog);
+
+//get book details from form submit button
+//create new book object
+//pass book details to addBookToLibrary()
 
 
 function createLibrary(location = LIBRARY_PARENT) {
@@ -26,7 +46,7 @@ Book.prototype.getDetails = function() {
 };
 
 //on form submission add a new book to myLibrary, and display the new book card on page
-function addBookToLibrary(myLibrary, cardContainer) {
+function addBookToLibrary(myLibrary, cardContainer) { //add book parameter to get book details
     //get new book details from user input
     const title = "test title";
     const author = "test author";

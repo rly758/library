@@ -9,5 +9,18 @@
 </head>
 <body>
     <a><button id="addBookBtn">Add Book</button></a>
+    <dialog id="dialog">
+        <div class="modal">
+            <form>
+                <p>Add New Book</p>
+                <input type="text" id="title" placeholder="Title">
+                <input type="text" id="author" placeholder="Author">
+                <input type="number" id="pages" placeholder="Pages" min="0" max="10000" step="1">
+                <label for="read">Have you read it?</label>
+                <input type="checkbox" id="read">
+                <button id="submitBtn">Submit</button>
+            </form>
+        </div>
+    </dialog>
 </body>
 </html>
