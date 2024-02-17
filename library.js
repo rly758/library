@@ -1,11 +1,11 @@
 const myLibrary = [];
-const libContainer = document.body;
+const LIBRARY_PARENT = document.body;
 
-function createLibrary(libContainer) {
+function createLibrary(location = LIBRARY_PARENT) {
     //create html div with class="library"
-    const lib = document.createElement("div");
-    lib.className = "library";
-    libContainer.appendChild(lib);
+    const library = document.createElement("div");
+    library.className = "library";
+    location.appendChild(library);
 }
 
 function Book(title, author, pages, read) {
@@ -29,10 +29,14 @@ function addBookToLibrary() {
 }
 
 //display existing library in myLibrary
-function showLibrary() {
+function showLibrary(myLibrary, cardContainer) {
     //for each Book in myLibrary
-    //create a Book card (html div element) with Book details listed
+    //create a Book card (html div element) with Book details listed => getBookCard() returns div element
     //append Book card element to library (html div element)
+    for (book of myLibrary) {
+        const card = getBookCard(book);
+        cardContainer.appendChild(card);
+    }
 }
 
 function getBookCard(book) {
@@ -53,10 +57,15 @@ function getBookCard(book) {
     return card;
 }
 
-const book1 = new Book("Book Title","Arthor Thor","172",true);
-myLibrary.push(book1);
+const book1 = new Book("Book Title 1","Arthor Thor","172",true);
+const book2 = new Book("Book Title 2","Arthur Tor","131",false);
 
-createLibrary(libContainer);
-const lib = document.querySelector(".library");
-const testCard = getBookCard(book1);
-lib.appendChild(testCard);
+myLibrary.push(book1);
+myLibrary.push(book2);
+
+createLibrary();
+const cardContainer = document.querySelector(".library");
+//const testCard = getBookCard(book1);
+//lib.appendChild(testCard);
+
+showLibrary(myLibrary, cardContainer);
